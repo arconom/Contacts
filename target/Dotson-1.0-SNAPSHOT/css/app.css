@@ -1,0 +1,54 @@
+*{
+    box-sizing: border-box;
+}
+label
+,button
+, input[type=submit]{
+    font-weight: bold;
+}
+
+.button-large
+{
+    padding: 16px;
+    font-size: x-large;
+    border-radius: 8px;
+    color: white;
+}
+.button-medium
+{
+    padding: 8px;
+    font-size: large;
+    border-radius: 8px;
+    color: white;
+}
+.button-blue{
+    background-color: #007fff;
+
+}
+.button-blue:hover
+{
+    background-color: #003eff;
+}
+.button-red{
+    background-color: red;
+}
+.button-red:hover{
+    background-color: darkred;
+}
+
+.header{
+    background: #444444;
+    color: white;
+    padding: 16px;
+}
+
+input[type=text]{
+
+    line-height: 20px;
+}
+body{
+    background: #CCCCCC;
+}
+.error{
+    border: red solid;
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomee>
+<!-- Connection details specified in src/main/resource/persistence.xml -->
+<Resource id="APP-DATA" type="javax.sql.DataSource">
+        IgnoreDefaultValues true 
+        JdbcDriver com.sqlite.jdbc.Driver
+        JdbcUrl jdbc:mysql://localhost:3306/scc-data
+        UserName admin
+        Password pass
+        JtaManaged true
+    </Resource>
+</tomee>
