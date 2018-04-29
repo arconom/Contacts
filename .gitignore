@@ -20,3 +20,5 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+target/surefire-reports/com.dotson.model.ContactTest.txt
+target/surefire-reports/TEST-com.dotson.model.ContactTest.xml

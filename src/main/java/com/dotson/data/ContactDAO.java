@@ -1,14 +1,12 @@
 package com.dotson.data;
 
 import com.dotson.model.Contact;
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.sql.*;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static org.apache.xalan.xsltc.compiler.util.Type.Int;
 
 /**
  *

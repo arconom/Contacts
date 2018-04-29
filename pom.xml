@@ -32,7 +32,7 @@
             <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
             <version>1.0.1.Final</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.openejb/tomee-jaxrs -->
+         <!--https://mvnrepository.com/artifact/org.apache.openejb/tomee-jaxrs--> 
         <dependency>
             <groupId>org.apache.openejb</groupId>
             <artifactId>tomee-jaxrs</artifactId>
@@ -45,12 +45,12 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>org.apache.tomee</groupId>
             <artifactId>tomee-embedded</artifactId>
-            <version>7.0.4</version>
+            <version>8.0.0</version>
             <type>jar</type>
-        </dependency>
+        </dependency>-->
         <!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
         <dependency>
             <groupId>javax.ws.rs</groupId>
@@ -87,14 +87,6 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.3</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>2.6</version>
                 <executions>
@@ -119,13 +111,29 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.openejb.maven</groupId>
                 <artifactId>tomee-maven-plugin</artifactId>
                 <version>1.7.1</version>
                 <configuration>
-                    <tomeeVersion>1.7.1</tomeeVersion>
-                    <tomeeClassifier>plus</tomeeClassifier>
-                    <path>./Deploy</path>
+                    <tomeeVersion>8.0.0</tomeeVersion>
+                    <tomeeClassifier>plume</tomeeClassifier>
+                    <tomeeHost>localhost</tomeeHost>
+                    <tomeeHttpPort>8080</tomeeHttpPort>
+                    <path>/Deploy</path>
+                    <debug>false</debug>
+                    <debugPort>5005</debugPort>
+                    <config>${project.basedir}/src/test/tomee/conf</config>
+                    <webapps>
+                        <webapp>com.Dotson:Dotson:1.0-SNAPSHOT?name=Dotson</webapp>
+                    </webapps>
                 </configuration>
             </plugin>
             <plugin>
