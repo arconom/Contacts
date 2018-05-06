@@ -2,7 +2,7 @@
 JAX-RS Web App
 
 Maven commands (run from root)
-mvn compile war:exploded
+mvn war:war
 mvn tomee-embedded:run
 
 
