@@ -2,9 +2,9 @@ var viewModel;
 NodeList.prototype.forEach = Array.prototype.forEach;
 $(function ()
 {
-    var queryUrl = "http://localhost:8080/Rest/ContactsManager/Contacts/List",
+    var queryUrl = "http://localhost:8080/Dotson-1.0-SNAPSHOT/ContactsManager/Contacts/List",
         tutorial = getTutorial(),
-        urlRoot = "http://localhost:8080/Rest/ContactsManager/Contacts";
+        urlRoot = "http://localhost:8080/Dotson-1.0-SNAPSHOT/ContactsManager/Contacts";
     viewModel = getDataTable("#container"
         , getTable()
         , queryUrl
@@ -297,7 +297,7 @@ $(function ()
     function create(url, data, doneCallback) {
         $.ajax({
             type: "POST",
-            url: "http://localhost:8080/Rest/ContactsManager/Contacts",
+            url: "http://localhost:8080/Dotson-1.0-SNAPSHOT/ContactsManager/Contacts",
             data: data,
             contentType: "application/json; charset=utf-8",
             dataType: "json",

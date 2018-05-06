@@ -50,7 +50,7 @@ public class ContactController {
     ) {
         ContactDAO dao = new ContactDAO();
         return Response.status(javax.ws.rs.core.Response.Status.OK)
-                .entity((List<Contact>) dao.findByQuery(firstName, lastName, email, address, phone).get(0))
+                .entity((List<Contact>) dao.findByQuery(firstName, lastName, email, address, phone))
                 .build();
     }
 
