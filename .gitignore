@@ -22,3 +22,4 @@
 hs_err_pid*
 target/surefire-reports/com.dotson.model.ContactTest.txt
 target/surefire-reports/TEST-com.dotson.model.ContactTest.xml
+target/surefire-reports/com.dotson.model.ContactTest.txt
