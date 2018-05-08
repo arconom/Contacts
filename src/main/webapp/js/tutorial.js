@@ -148,7 +148,7 @@ function Tutorial(scope, list) {
                 document.cookie = "tutorialFlag=true";
             }
             , notify: function () {
-                if (confirm("Do you want to view the tutorial?  It can also be accessed via the Help menu.")) {
+                if (confirm("Do you want to view the tutorial?")) {
                     this.start();
                 }
             }
