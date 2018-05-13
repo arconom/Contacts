@@ -115,9 +115,65 @@
                 <version>3.2.0</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <outputDirectory>
+                        ${project.build.directory}
+                    </outputDirectory>
                 </configuration>
             </plugin>
 			
+            <plugin>
+                <groupId>org.apache.tomee.maven</groupId>
+                <artifactId>tomee-maven-plugin</artifactId>
+                <version>7.0.4</version>
+                <configuration>
+                    <tomeeVersion>7.0.4</tomeeVersion>
+                    <tomeeClassifier>plume</tomeeClassifier>
+                    <debug>false</debug>
+                    <debugPort>5005</debugPort>
+                    <config>${project.basedir}/target/apache-tomee/conf</config>
+                    <systemProperties>
+                        <systemVariables>
+                            <openejb.system.apps>true</openejb.system.apps>
+                            <tomee.serialization.class.blacklist>-</tomee.serialization.class.blacklist>
+                        </systemVariables>
+                    </systemProperties>
+                    <synchronization>
+                        <extensions>
+                            <!-- To update each time app built with mvn compile -->
+                            <extension>.class</extension>
+                            <extension>.properties</extension>
+                            <extension>.css</extension>
+                        </extensions>
+                        <updateInterval>2</updateInterval>
+                    </synchronization>
+                    <config>${project.basedir}/src/test/tomee/conf</config>
+                    <warFile>
+                        ${project.build.directory}/${project.build.finalName}
+                    </warFile>
+                    <!-- path used by tomEE in the tomee:deploy and tomee:undeploy goals -->
+                    <path>
+                        ${project.build.directory}/apache-tomee/webapps/${project.build.finalName}
+                    </path>
+                    <args>
+                    </args>
+                    <libs>
+                    </libs>
+                    <webapps>
+                    </webapps>
+                    <apps>
+                    </apps>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.tomee</groupId>
+                        <artifactId>apache-tomee</artifactId>
+                        <version>7.0.4</version>
+                        <classifier>plume</classifier>
+                        <type>zip</type>
+                        <scope>runtime</scope>
+                    </dependency>
+                </dependencies>
+            </plugin>
             <plugin>
                 <groupId>org.apache.tomee.maven</groupId>
                 <artifactId>tomee-embedded-maven-plugin</artifactId>
@@ -153,33 +209,30 @@
                     <!-- <reloadOnUpdate>false</reloadOnUpdate> -->
                     <warFile>
                         ${project.build.directory}/${project.build.finalName}
+                        <!--${project.build.directory}-->
+                        <!--C:\projects\Contacts\target\this should not work-->
                     </warFile>
                     <!-- path used by tomEE in the tomee:deploy and tomee:undeploy goals -->
                     <path>
-                        ${project.build.directory}/apache-tomee/webapps${project.build.finalName}
+                        ${project.build.directory}/apache-tomee/webapps/${project.build.finalName}
+                        <!--${project.build.directory}/${project.build.finalName}-->
                     </path>
                     <args>
                         -Dfile.encoding=UTF-8 -server
                         -Xms128m -Xmx4096m -XX:PermSize=196m -XX:MaxPermSize=128m
                         -XX:+DisableExplicitGC</args>
                     <libs>
-                        <!-- <lib> -->
-                        <!-- mysql:mysql-connector-java:${mysql-connector-version} -->
-                        <!-- </lib> -->
                     </libs>
                 </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>org.apache.tomee</groupId>
-                        <artifactId>apache-tomee</artifactId>
+                        <artifactId>tomee-embedded</artifactId>
                         <version>7.0.4</version>
-                        <classifier>plume</classifier>
-                        <type>zip</type>
                         <scope>runtime</scope>
                     </dependency>
                 </dependencies>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
