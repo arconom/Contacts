@@ -2,9 +2,9 @@ var viewModel;
 NodeList.prototype.forEach = Array.prototype.forEach;
 $(function ()
 {
-    var queryUrl = "http://localhost:8080/Dotson-1.0/ContactsManager/Contacts/List",
+    var queryUrl = "http://localhost:8080/Rest/ContactsManager/Contacts/List",
         tutorial = getTutorial(),
-        urlRoot = "http://localhost:8080/Dotson-1.0/ContactsManager/Contacts";
+        urlRoot = "http://localhost:8080/Rest/ContactsManager/Contacts";
     viewModel = getDataTable("#container"
         , getTable()
         , queryUrl

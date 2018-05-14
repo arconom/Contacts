@@ -130,6 +130,7 @@
                     <tomeeClassifier>plume</tomeeClassifier>
                     <debug>false</debug>
                     <debugPort>5005</debugPort>
+                    <context>Rest</context>
                     <config>${project.basedir}/target/apache-tomee/conf</config>
                     <systemProperties>
                         <systemVariables>
