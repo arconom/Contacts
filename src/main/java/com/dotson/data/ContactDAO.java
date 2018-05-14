@@ -71,7 +71,7 @@ public class ContactDAO extends DataAccessObject {
                 // Send all output to the Appendable object sb
                 Formatter formatter = new Formatter(sql, Locale.US);
                 formatter.format("INSERT INTO CONTACT (FIRSTNAME,LASTNAME,EMAIL,ADDRESS,PHONE)"
-                        + "VALUES ('%1$2s', '%2$2s', '%3$2s', '%4$2s', '%5$2s');",
+                        + "VALUES ('%1$s', '%2$s', '%3$s', '%4$s', '%5$s');",
                         contact.getFirstName(),
                         contact.getLastName(),
                         contact.getEmail(),
@@ -128,11 +128,11 @@ public class ContactDAO extends DataAccessObject {
         Formatter formatter = new Formatter(sql, Locale.US);
         formatter.format("SELECT * "
                 + "FROM CONTACT "
-                + "WHERE FIRSTNAME = '%1$2s'"
-                + "AND LASTNAME = '%2$2s'"
-                + "AND EMAIL = '%3$2s'"
-                + "AND ADDRESS = '%4$2s'"
-                + "AND PHONE = '%5$2s'"
+                + "WHERE FIRSTNAME = '%1$s'"
+                + "AND LASTNAME = '%2$s'"
+                + "AND EMAIL = '%3$s'"
+                + "AND ADDRESS = '%4$s'"
+                + "AND PHONE = '%5$s'"
                 + ";",
                 firstName.isEmpty() ? '%' : firstName,
                 lastName.isEmpty() ? '%' : lastName,
@@ -186,8 +186,8 @@ public class ContactDAO extends DataAccessObject {
         });
     }
 
-    public List getCount() {
-        return getResultSet(
+    public Integer getCount() {
+        return (Integer) getResultSet(
                 "SELECT count(*) AS total FROM Contact",
                 new IQueryable() {
             @Override
@@ -199,7 +199,7 @@ public class ContactDAO extends DataAccessObject {
                     return -1;
                 }
             }
-        });
+        }).get(0);
     }
 
     /**
@@ -217,12 +217,12 @@ public class ContactDAO extends DataAccessObject {
                 Formatter formatter = new Formatter(sql, Locale.US);
                 formatter.format("UPDATE CONTACT "
                         + "set"
-                        + " FIRSTNAME = '%1$2s'"
-                        + ", LASTNAME = '%2$2s'"
-                        + ", EMAIL = '%3$2s'"
-                        + ", ADDRESS = '%4$2s'"
-                        + ", PHONE = '%5$2s'"
-                        + " where ID = '%6$2s';",
+                        + " FIRSTNAME = '%1$s'"
+                        + ", LASTNAME = '%2$s'"
+                        + ", EMAIL = '%3$s'"
+                        + ", ADDRESS = '%4$s'"
+                        + ", PHONE = '%5$s'"
+                        + " where ID = '%6$s';",
                         contact.getFirstName(),
                         contact.getLastName(),
                         contact.getEmail(),

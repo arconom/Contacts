@@ -2,9 +2,9 @@ var viewModel;
 NodeList.prototype.forEach = Array.prototype.forEach;
 $(function ()
 {
-    var queryUrl = "http://localhost:8080/Dotson-1.0-SNAPSHOT/ContactsManager/Contacts/List",
+    var queryUrl = "http://localhost:8080/Rest/ContactsManager/Contacts/List",
         tutorial = getTutorial(),
-        urlRoot = "http://localhost:8080/Dotson-1.0-SNAPSHOT/ContactsManager/Contacts";
+        urlRoot = "http://localhost:8080/Rest/ContactsManager/Contacts";
     viewModel = getDataTable("#container"
         , getTable()
         , queryUrl
@@ -250,11 +250,28 @@ $(function ()
         return returnMe;
     }
     function getTutorial() {
+     
+        var tempRow = null;
+        
         return Tutorial("body",
             [
                 {selector: ".new-contact", description: "Enter data in these fields and click the Create button to create a new Contact.  It should show up in the table below.", before: function () {}, after: function () {}}
                 , {selector: "input[type=search]", description: "This field will execute a search on every column in the table.", before: function () {}, after: function () {}}
-                , {selector: "thead", description: "Each of these will filter on their corresponding column.", before: function () {}, after: function () {}}
+                , {selector: "thead > tr > th", description: "Each of these will filter on their corresponding column.", before: function () {}, after: function () {}}
+                , {selector: "tr > td", description: "Click on a table cell to edit.", before: function () {
+                        viewModel.ui.table.rows().clear();
+                        tempRow = viewModel.ui.table.row.add({
+                            firstName: "firstName"
+                            , lastName: "lastName"
+                            , email: "email"
+                            , address: "address"
+                            , phone: "phone"
+                        });
+                         viewModel.ui.table.draw();
+                    }, after: function () {
+                        viewModel.ui.table.row(tempRow).remove();
+                         viewModel.ui.redraw();
+                    }}
             ]).getInstance();
     }
 
@@ -297,7 +314,7 @@ $(function ()
     function create(url, data, doneCallback) {
         $.ajax({
             type: "POST",
-            url: "http://localhost:8080/Dotson-1.0-SNAPSHOT/ContactsManager/Contacts",
+            url: urlRoot,
             data: data,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
